@@ -1,0 +1,4 @@
+[submodule "decoder"]
+    path = decoder
+    url = https://github.com/theengs/decoder.git
+    branch = main      # 可选，默认跟踪当前提交
