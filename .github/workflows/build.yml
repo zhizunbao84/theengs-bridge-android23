@@ -24,9 +24,11 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    # ③ 缓存 Gradle → 二次构建秒完成
-    - name: Cache Gradle
-      uses: gradle/gradle-build-action@v3
+# ③ 2025 官方推荐：gradle/actions/setup-gradle（自带缓存）
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: wrapper   # 使用项目 wrapper 版本
 
     # ④ 自动装 Android SDK/NDK（官方 action）
     - name: Setup Android SDK
