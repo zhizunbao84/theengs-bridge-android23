@@ -37,6 +37,12 @@ jobs:
         api-level: 23
         ndk: 21.4.7075529
         cmake: 3.22.1
+        
+    - name: Generate Gradle Wrapper
+      run: |
+        # 安装 Gradle 后生成 wrapper
+        sudo apt-get update && sudo apt-get install -y gradle
+        gradle wrapper --gradle-version 8.0        
 
     # ⑤ 赋予执行权限（Windows  runner 需要）
     - name: Grant gradlew permission
