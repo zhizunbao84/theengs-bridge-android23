@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.theengs.bridge'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.theengs.bridge"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        // NDK 配置
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+
+        externalNativeBuild.cmake {
+            arguments "-DANDROID_STL=c++_static"
+            cppFlags "-std=c++17", "-Oz"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+
+    // 外部 CMake 项目
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+
+    // 可选：签名配置（GitHub Actions 可注入）
+    signingConfigs {
+        release {
+            def keystoreFile = findProperty('MYAPP_RELEASE_STORE_FILE') ?: ""
+            if (keystoreFile) {
+                storeFile file(keystoreFile)
+                storePassword findProperty('MYAPP_RELEASE_STORE_PASSWORD')
+                keyAlias findProperty('MYAPP_RELEASE_KEY_ALIAS')
+                keyPassword findProperty('MYAPP_RELEASE_KEY_PASSWORD')
+            }
+        }
+    }
+}
+
+dependencies {
+    // 无第三方库，纯原生
+}
