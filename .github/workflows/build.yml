@@ -33,15 +33,17 @@ jobs:
         ndk: 21.4.7075529
         cmake: 3.22.1
         
-    - name: Generate Gradle Wrapper
-      run: |
-        # 安装 Gradle 后生成 wrapper
-        # sudo apt-get update && sudo apt-get install -y gradle
-        gradle wrapper --gradle-version 8.0        
+# ② 给上传的 gradle 加执行权
+    - name: Make local gradle executable
+      run: chmod +x ./gradle
 
-    # ⑤ 赋予执行权限（Windows  runner 需要）
-    - name: Grant gradlew permission
-      run: chmod +x gradlew
+    # ③ 用本地 gradle 生成 wrapper（一次即可）
+    - name: Generate Gradle Wrapper
+      run: ./gradle wrapper --gradle-version 8.0
+
+    # ④ 后续统一用 gradlew 构建（缓存、签名等不变）
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./gradlew
 
     # ⑥ 编译 Debug APK
     - name: Build APK
