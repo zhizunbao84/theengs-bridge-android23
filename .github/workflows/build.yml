@@ -37,7 +37,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
-        gradle-version: 8.0   # 指定版本，可选
+        gradle-version: '8.1.1'   # 指定版本，可选
 
     # ③ 用本地 gradle 生成 wrapper（一次即可）
     - name: Generate Gradle Wrapper
