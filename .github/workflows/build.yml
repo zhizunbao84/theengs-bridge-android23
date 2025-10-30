@@ -47,6 +47,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
       
+    - name: Install xmllint
+      run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
     - name: Validate XML syntax
       run: xmllint --noout app/src/main/AndroidManifest.xml
 
