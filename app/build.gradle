@@ -43,6 +43,17 @@ android {
         }
     }
 
+    packagingOptions {
+        // 允许安装 ELF 到 lib/<abi>/
+        doNotStrip '*/theengs-cli-jni'
+    }
+    sourceSets {
+        main {
+            // 把 ELF 当作原生库安装
+            jniLibs.srcDirs = ['src/main/cpp/install']
+        }
+    }
+
     // 可选：签名配置（GitHub Actions 可注入）
     signingConfigs {
         release {
