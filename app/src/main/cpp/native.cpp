@@ -1,7 +1,8 @@
 #include <jni.h>
 #include <string>
-#include <ArduinoJson.h>
+#include <optional>
 #include "decoder.h"          // decoder/src/decoder.h
+#include <ArduinoJson.h>
 
 extern "C"
 JNIEXPORT jstring JNICALL
@@ -15,8 +16,9 @@ Java_com_theengs_bridge_BleService_decode(JNIEnv *env, jobject,
     StaticJsonDocument<512> doc;
     JsonObject json = doc.to<JsonObject>();
 
-    // 2. 调用类成员函数 decodeBLEJson
-    bool ok = TheengsDecoder::decodeBLEJson(json);   // 全局函数，无命名空间
+    // 2. 实例化解码器并调用成员函数
+    TheengsDecoder decoder;
+    bool ok = decoder.decodeBLEJson(json);   // 类成员函数
 
     env->ReleaseByteArrayElements(adv, (jbyte *)p, JNI_ABORT);
     env->ReleaseStringUTFChars(jmac, mac);
