@@ -17,3 +17,7 @@ target_include_directories(theengs-cli-jni PRIVATE
     ${CMAKE_SOURCE_DIR}/../../../../decoder/src
 )
 target_link_libraries(theengs-cli-jni decoder)
+
+install(TARGETS theengs-cli-jni
+        LIBRARY DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
+        OPTIONAL)
