@@ -10,7 +10,7 @@ int main() {
     StaticJsonDocument<512> doc;
     JsonObject json = doc.to<JsonObject>();
 
-    bool ok = decodeBLEJson(json);   // 全局函数
+    bool ok = TheengsDecoder::decodeBLEJson(json);   // 全局函数
     if (!ok) return 1;
 
     std::string out;
