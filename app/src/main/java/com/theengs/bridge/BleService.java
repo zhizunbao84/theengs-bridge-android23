@@ -2,8 +2,8 @@ package com.theengs.bridge;
 
 
 import android.app.Service;
-import android.bluetooth.BluetoothLeScanner;
-import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.BluetoothManager;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
