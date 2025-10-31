@@ -1,11 +1,26 @@
 package com.theengs.bridge;
 
+
 import android.app.Service;
-import android.bluetooth.*;
+import android.bluetooth.BluetoothLeScanner;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.LocalServerSocket;
+import android.net.LocalSocket;
 import android.os.IBinder;
 import android.util.Log;
-import java.io.*;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import java.nio.charset.StandardCharsets;
 
 public class BleService extends Service {
