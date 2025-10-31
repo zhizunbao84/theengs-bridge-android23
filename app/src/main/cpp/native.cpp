@@ -13,7 +13,7 @@ Java_com_theengs_bridge_BleService_decode(JNIEnv *env, jobject /*thiz*/,
     const char *mac = env->GetStringUTFChars(jmac, nullptr);
 
     // 解码（返回 optional<JsonObject>）
-    std::optional<JsonObject> json = theengs::decodeBLE(
+    std::optional<JsonObject> json = decodeBLE(
         std::string((char *)p, len), mac, rssi);
 
     env->ReleaseByteArrayElements(adv, (jbyte *)p, JNI_ABORT);
