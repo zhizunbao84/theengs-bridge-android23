@@ -24,14 +24,16 @@ jobs:
           git submodule add https://github.com/theengs/decoder.git decoder
         fi
 
-        # 2. 初始化 & 拉取最新 main 分支
+        # 2. 初始化 & 拉取子模块
         git submodule update --init --recursive
+
+        # 3. 进入子模块，检出默认分支（自动检测）
         cd decoder
-        git checkout main
-        git pull origin main
+        default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+        git pull origin "$default_branch"
         cd ..
 
-        # 3. 记录子模块 commit 并提交
+        # 4. 记录子模块 commit 并提交
         git add decoder
         git diff --cached --quiet || (
           git config user.name  "github-actions[bot]"
