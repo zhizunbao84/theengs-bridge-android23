@@ -17,24 +17,26 @@ jobs:
       with:
         submodules: recursive
 
-    - name: 重新绑定子模块到最新提交（纯 CI 修复）
+    - name: 初始化并重新添加子模块（纯 CI）
       run: |
-        # 1. 确保子模块被初始化
-        git submodule update --init --recursive
+        # 1. 若 decoder 目录不存在，重新添加子模块
+        if [ ! -d decoder ]; then
+          git submodule add https://github.com/theengs/decoder.git decoder
+        fi
 
-        # 2. 进入子模块并拉取最新 main 分支
+        # 2. 初始化 & 拉取最新 main 分支
+        git submodule update --init --recursive
         cd decoder
         git checkout main
         git pull origin main
         cd ..
 
-        # 3. 把子模块当前 commit 记录到主仓库索引
+        # 3. 记录子模块 commit 并提交
         git add decoder
-        # 4. 若有变更就提交；无变更则静默跳过
         git diff --cached --quiet || (
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "ci: update decoder submodule to latest main"
+          git commit -m "ci: add/update decoder submodule"
           git push
         )
 
