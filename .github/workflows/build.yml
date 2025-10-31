@@ -64,13 +64,20 @@ jobs:
         java-version: '17'
 
 
-    # ④ 自动装 Android SDK/NDK（官方 action）
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-      with:
-        api-level: 33
-        ndk: 21.4.7075529
-        cmake: 3.22.1
+    - name: 安装 Android SDK 平台 33 & NDK
+      run: |
+        # 1. 安装命令行工具
+        mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
+        curl -o cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
+        unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
+        mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+
+        # 2. 接受许可 & 装平台 + NDK
+        yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
+          "platforms;android-33" \
+          "ndk;21.4.7075529" \
+          "cmake;3.22.1"
         
     # ③ 2025 官方推荐：自动安装完整 Gradle 8.x 并缓存
     - name: Setup Gradle
