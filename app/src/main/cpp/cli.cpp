@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include <ArduinoJson.h>
 #include "decoder.h"
+#include <ArduinoJson.h>
 
 int main() {
     std::string hex;
@@ -10,7 +10,10 @@ int main() {
     StaticJsonDocument<512> doc;
     JsonObject json = doc.to<JsonObject>();
 
-    bool ok = TheengsDecoder::decodeBLEJson(json);   // 全局函数
+    // 实例化解码器并调用成员函数
+    TheengsDecoder decoder;
+    bool ok = decoder.decodeBLEJson(json);   // 类成员函数
+
     if (!ok) return 1;
 
     std::string out;
