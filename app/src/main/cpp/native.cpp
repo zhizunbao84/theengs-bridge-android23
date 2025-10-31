@@ -16,7 +16,7 @@ Java_com_theengs_bridge_BleService_decode(JNIEnv *env, jobject,
     JsonObject json = doc.to<JsonObject>();
 
     // 2. 调用类成员函数 decodeBLEJson
-    bool ok = decodeBLEJson(json);   // 全局函数，无命名空间
+    bool ok = TheengsDecoder::decodeBLEJson(json);   // 全局函数，无命名空间
 
     env->ReleaseByteArrayElements(adv, (jbyte *)p, JNI_ABORT);
     env->ReleaseStringUTFChars(jmac, mac);
