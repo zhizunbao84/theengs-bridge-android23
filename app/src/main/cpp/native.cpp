@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <string>
-#include "theengs/decoder.h"
+#include "decoder.h"
 
 extern "C"
 JNIEXPORT jstring JNICALL
