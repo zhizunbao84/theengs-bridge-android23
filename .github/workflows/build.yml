@@ -1,8 +1,6 @@
 name: Build Android APK (API 23)
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:          # 手动触发按钮
 
 # ① 授予写权限（提交 & 推送）
@@ -35,6 +33,7 @@ jobs:
         # 3. 进入子模块，检出默认分支（自动检测）
         cd decoder
         default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+        echo $default_branch
         git pull origin "$default_branch"
         cd ..
 
