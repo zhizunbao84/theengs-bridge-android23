@@ -19,8 +19,8 @@ android {
         }
 
         externalNativeBuild.cmake {
-            arguments "-DANDROID_STL=c++_static"
-            cppFlags "-std=c++17", "-Oz"
+            arguments "-DANDROID_STL=c++_static", "-DANDROID_ARM_NEON=OFF"
+            cppFlags "-std=c++17", "-Oz", "-mfloat-abi=softfp", "-mfpu=vfpv3-d16"
         }
     }
 
