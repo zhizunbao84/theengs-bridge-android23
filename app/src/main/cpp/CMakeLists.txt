@@ -13,6 +13,11 @@ target_link_libraries(theengs-jni decoder)
 
 # 3. CLI 可执行文件
 add_executable(theengs-cli-jni cli.cpp)
+
+# 改成共享库（同名 .so）
+add_library(theengs-cli-jni SHARED cli.cpp)
+
+# 其余不变
 target_include_directories(theengs-cli-jni PRIVATE
     ${CMAKE_SOURCE_DIR}/../../../../decoder/src
 )
