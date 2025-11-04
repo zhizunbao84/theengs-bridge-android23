@@ -19,7 +19,7 @@ android {
         }
         externalNativeBuild.cmake {
             arguments "-DANDROID_PLATFORM=android-23", "-DANDROID_STL=c++_static"
-            cppFlags "-std=c++17", "-Oz", "-march=armv7-a", "-mfpu=neon-vfpv4", "-mfloat-abi=softfp",
+            cppFlags "-std=c++17", "-Oz", "-march=armv7-a", "-mfpu=neon-vfpv4", "-mfloat-abi=softfp"
         }
     }
     
