@@ -19,7 +19,7 @@ android {
         }
     }
 
-    externalNativeBuild.cmake {
+    defaultConfig.externalNativeBuild.cmake {
         arguments "-DANDROID_STL=c++_static",
                   "-DANDROID_ARM_NEON=OFF",
                   "-DANDROID_ABI=armeabi-v7a",
