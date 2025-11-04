@@ -110,8 +110,11 @@ jobs:
 
     - name: 验证软浮点
       run: |
-        readelf -A app/build/outputs/apk/debug/lib/armeabi-v7a/libtheengs-cli-jni.so | \
+        unzip -q app/build/outputs/apk/debug/app-debug.apk -d /tmp/theengs
+        readelf -A /tmp/theengs/lib/armeabi-v7a/libtheengs-cli-jni.so | \
           grep -E 'Tag_ABI_VFP_args|Tag_ABI_FP_number_model'
+        # 必须出现：
+        # Tag_ABI_VFP_args: soft
 
     # ⑦ 把产物上传到 Actions 页面供下载
     - name: Upload APK
