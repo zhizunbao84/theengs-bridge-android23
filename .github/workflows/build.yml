@@ -77,6 +77,10 @@ jobs:
           "platforms;android-33" \
           "ndk;21.4.7075529" \
           "cmake;3.22.1"
+
+    - name: 确认 NDK 已安装
+      run: |
+        ls $ANDROID_SDK_ROOT/ndk/21.4.7075529
         
     # ③ 2025 官方推荐：自动安装完整 Gradle 8.x 并缓存
     - name: Setup Gradle
