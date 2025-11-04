@@ -22,11 +22,11 @@ android {
     externalNativeBuild.cmake {
         arguments "-DANDROID_STL=c++_static",
                   "-DANDROID_ARM_NEON=OFF",
-                  "-DCMAKE_TOOLCHAIN_FILE=${android.ndkDirectory}/build/cmake/android.toolchain.cmake",
                   "-DANDROID_ABI=armeabi-v7a",
                   "-DANDROID_PLATFORM=android-21",
                   "-DCMAKE_C_FLAGS=-mfloat-abi=soft -mfpu=vfpv3-d16",
-                  "-DCMAKE_CXX_FLAGS=-mfloat-abi=soft -mfpu=vfpv3-d16"
+                  "-DCMAKE_CXX_FLAGS=-mfloat-abi=soft -mfpu=vfpv3-d16",
+                  "-DCMAKE_TOOLCHAIN_FILE=${android.ndkDirectory}/build/cmake/android.toolchain.cmake"
         cppFlags "-std=c++17", "-Oz"
     }
     
