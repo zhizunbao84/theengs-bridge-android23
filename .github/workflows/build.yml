@@ -104,7 +104,9 @@ jobs:
 
     # ⑥ 编译 Debug APK
     - name: Build APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: |
+        rm -rf app/build app/.cxx
+        ./gradlew assembleDebug --stacktrace
 
     # ⑦ 把产物上传到 Actions 页面供下载
     - name: Upload APK
