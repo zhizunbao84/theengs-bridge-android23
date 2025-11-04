@@ -18,8 +18,6 @@ android {
             abiFilters 'armeabi-v7a'
         }
         externalNativeBuild.cmake {
-            path "src/main/cpp/CMakeLists.txt"
-            version "3.22.1"
             arguments "-DANDROID_STL=c++_static",
                       "-DANDROID_ARM_NEON=OFF",
                       "-DCMAKE_C_FLAGS=-mfloat-abi=soft -mfpu=vfpv3-d16",
@@ -40,6 +38,14 @@ android {
         }
     }
 
+    // 外部 CMake 项目
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+    
     packagingOptions {
         // 允许安装 ELF 到 lib/<abi>/
         doNotStrip '*/theengs-cli-jni'
